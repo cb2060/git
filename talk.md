@@ -224,7 +224,7 @@ proj
 print("Hello world!")
 ```
 
-* Recheck status
+* Recheck status - Git warns about **untracked** files
 
 ```
 $ git status
@@ -240,7 +240,6 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-* Git warns about **untracked** files
 
 ---
 
@@ -280,49 +279,16 @@ proj
 ## Save to repository
 * Save the latest changes in the local repository (in `.git` directory)
 ```
-    $ git commit -m "First hello"
-    [master (root-commit) edf197e] First hello
-     1 file changed, 1 insertion(+)
-     create mode 100644 hello.py
+$ git commit -m "First hello"
+[master (root-commit) edf197e] First hello
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.py
 ```
-* Check the status again
+* Check status - all clear
 ```
-    $ git status
-    On branch master
-    nothing to commit, working directory clean
-```
-
----
-
-### The work cycle
-There are three levels, from "lowest"
-
-* The work directory
-* The staging area
-* The repository
-
-
-```
-repository (.git)
-    ^
-    |   commit
-
-staging area (cache)
-
-    ^
-    |   add
-
-work directory     <- init
-```
-
-A single file may be represented att all levels
-
-
-The basic work cycle is edit-add-commit
-```
-    $ <edit> <file>
-    $ git add <file> #adds new file or saves latest changes
-    $ git commit -m <message> <file> #save permanently in repository
+$ git status
+On branch master
+nothing to commit, working directory clean
 ```
 
 ---
@@ -335,102 +301,145 @@ $ git log --oneline
 f56e3da (HEAD -> master) First hello
 ```
 
+<center>
+<img src="gitink/c1.svg">
+</center>
+
+* A branch is viewed as a line of a development
+* Initial default branch is always `master`
+* A branch in practise a label for a particular commit
+* HEAD is an alias for the current active branch
+
 ---
+
+### The work cycle
+There are three levels, from "lowest"
+
+* The work directory
+* The staging area
+* The repository
+
+
+```
+repository (c1 -> c2 -> c3...)
+    ^
+    |   commit #save permanently in repository
+
+staging area (cache)
+
+    ^
+    |   add  #adds new file or saves latest changes
+
+work directory
+```
+
+A single file represented att all levels and all previous versions
+
+---
+
 
 ### Viewing changes
 
 * Consider a modified file
-```
-    $ cat << EOF > hello.py
-    print "Hello there world!"
-    EOF
+
+```python
+#hello.py
+print("Hello there world!")
 ```
 * git now recognizes this tracked file as modified
-```
-    $ git status
-    On branch master
-    Changes not staged for commit:
-      (use "git add <file>..." to update what will be committed)
-      (use "git checkout -- <file>..." to discard changes in working directory)
 
-	    modified:   hello.py
+```
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-    no changes added to commit (use "git add" and/or "git commit -a")
-```
-```
-    $ git diff
-    diff --git a/hello.py b/hello.py
-    index ed708ec..01c97be 100644
-    --- a/hello.py
-    +++ b/hello.py
-    @@ -1 +1 @@
-    -print "Hello world!"
-    +print "Hello there world!"
+                                                                                        modified:   hello.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ```
 ---
-```
-    $ git difftool
-```
 
-<img src="img/git_difftool.png"/>
+### Viewing changes
 
+```
+$ git diff
+diff --git a/hello.py b/hello.py
+index ed708ec..01c97be 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1 +1 @@
+-print("Hello world!")
++print("Hello there world!")
+```
 ---
 
-### Update repository
+### Save changes
+
+* First to cache
+
 ```bash
-    $ git add hello.py
+$ git add hello.py
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+
+	modified:   hello.py
 ```
+
+* then to repository
+
 ```bash
-    $ git commit -m "Change greeting"
-    [master f7efe62] Change greeting
-     1 file changed, 1 insertion(+), 1 deletion(-)
+$ git commit -m "Change greeting"
+[master f7efe62] Change greeting
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
+---
+
+### History after two commits
+
+
 ```bash
-    $ git log
-    commit f7efe62016fcd70fbdbd2232f9086bfd96aaf413
-    Author: First Last <first.last@isp.com>
-    Date:   Thu Oct 16 18:32:41 2014 +0200
-
-        Change greeting
-
-    commit edf197e2974f9365abe3a52e6bde5ae0495d5016
-    Author: First Last <first.last@isp.com>
-    Date:   Thu Oct 16 17:32:45 2014 +0200
-
-        First hello
+    $ git log --oneline
+b895711 (HEAD -> master) Change greeting
+f56e3da First hello
 ```
+
+<center><img src="gitink/c2.svg"></center>
 
 ---
 
-### Graphical frontends
-```
-    $ gitg
-```
-<center><img src="img/gitg.png" height="480"/></center>
-
----
 
 ### Recovering old work
 * To retreive old verions, use checkout with the commit string
-```
-    $ git checkout edf197
-    Note: checking out 'edf197'.
 
-    You are in 'detached HEAD' state. You can look around, make experimental
-    changes and commit them, and you can discard any commits you make in this
-    state without impacting any branches by performing another checkout.
-
-    If you want to create a new branch to retain commits you create, you may
-    do so (now or later) by using -b with the checkout command again. Example:
-
-      git checkout -b new_branch_name
-
-    HEAD is now at edf197e... First hello
 ```
+$ git checkout f56e3da
+Note: checking out 'f56e3da'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at f56e3da... First hello
 ```
-    $ cat hello.py
-    print "Hello world!"
+---
+
 ```
+$ git log --oneline --all
+b895711 (master) Change greeting
+f56e3da (HEAD) First hello
+```
+
+<img src="gitink/c3.svg">
 
 ---
 
