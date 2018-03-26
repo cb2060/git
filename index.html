@@ -477,31 +477,6 @@ f56e3da (HEAD -> master) First hello
 
 ---
 
-### The work cycle
-There are three levels, from "lowest"
-
-* The work directory
-* The staging area
-* The repository
-
-
-```
-repository (c1 -> c2 -> c3...)
-    ^
-    |   commit #save permanently in repository
-
-staging area (cache)
-
-    ^
-    |   add  #adds new file or saves latest changes
-
-work directory
-```
-
-A single file represented att all levels and all previous versions
-
----
-
 
 ### Viewing changes
 
@@ -596,6 +571,11 @@ do so (now or later) by using -b with the checkout command again. Example:
 
 HEAD is now at f56e3da... First hello
 ```
+
+```
+$ cat hello.py
+print("Hello world")!
+```
 ---
 
 ```
@@ -606,206 +586,113 @@ f56e3da (HEAD) First hello
 
 <img src="gitink/c3.svg">
 
----
-
-### Switch back to latest version
-
 ```
-    $ git status
-    HEAD detached at edf197e
-    nothing to commit, working directory clean
+$git checkout master
+Previous HEAD position was f56e3da... First hello
+Switched to branch 'master'
 ```
-
-```
-    $ git checkout master
-    Previous HEAD position was edf197e... First hello
-    Switched to branch 'master'
-```
-
-```
-    $ git status
-    On branch master
-    nothing to commit, working directory clean
-```
-
-```
-    $ cat hello.py
-    print "Hello there world!"
-```
+<img src="gitink/c4.svg">
 
 ---
 
-### Remote repositories
+### The work cycle
+There are three levels, from "lowest"
 
-* Necessary for collaborative projects
-* Useful for single-user projects
-* Web-services, github, bitbucket
-* A shared directory (NFS, AFS, Dropbox....)
-* git pull from remote
-* git push to remote
+* The work directory
+* The staging area
+* The repository
+
 
 ```
-repository (.git)  <->   remote
-                pull,push
-
+repository (c1 -> c2 -> c3...)
     ^
-    |   commit
+    |   commit #save permanently in repository
 
 staging area (cache)
 
     ^
-    |   add
+    |   add  #adds new file or saves latest changes
 
-work directory     <- init, clone
+work directory
 ```
+
+A single file represented att all levels and all previous versions
 
 ---
 
-### A shared directory repository
+## Branches
 
-* Create an empty remote repository
 ```
-    $ git init --bare ~/Dropbox/proj.git
-    Initialized empty Git repository in /home/olav/Dropbox/proj.git/
+$ git branch in-more-languages
+$ git checkout in-more-languages 
+Switched to branch 'in-more-languages'
 ```
---
+```
+$ git log --oneline --all
+b895711 (HEAD -> in-more-languages, master) Change greeting
+f56e3da First hello
+```
+<img src="gitink/c5.svg">
 
-* Create an alias for the remote repository
-```
-    $ git remote add dropbox ~/Dropbox/hello.git
-    $ git remote -v
-    dropbox	/home/olav/Dropbox/proj.git (fetch)
-    dropbox	/home/olav/Dropbox/proj.git (push)
-```
---
+---
+### Work in the new branch
 
-* Let the local branch track the remote repository
+```python
+#hello.py
+print("Hello there world!")
+print("Bonjour tout le monde!")
 ```
-    $ git push -u dropbox master
-    Counting objects: 6, done.
-    Delta compression using up to 4 threads.
-    Compressing objects: 100% (2/2), done.
-    Writing objects: 100% (6/6), 473 bytes | 0 bytes/s, done.
-    Total 6 (delta 0), reused 0 (delta 0)
-    To /home/olav/Dropbox/proj.git
-     * [new branch]      master -> master
-    Branch master set up to track remote branch master from dropbox.
+
 ```
+$ git add -u 
+$ git commit -m "French"
+[in-more-languages 84bfae8] French
+ 1 file changed, 1 insertion(+)
+```
+
+```
+$ git log --oneline
+84bfae8 (HEAD -> in-more-languages) French
+b895711 (master) Change greeting
+f56e3da First hello
+```
+<center><img src="gitink/c6.svg"></center>
 
 ---
 
-
-* Now your local is in sync with your remote
-* Make another local change
+### Keep the changes: merge to master
 
 ```
-    $ cat << EOF > hello.py
-    print "HELLO THERE WORLD!"
-    EOF
+$ git checkout master
+Switched to branch 'master'
 ```
-
-```
-    $ git add hello.py
-```
-
-```
-    $ git commit -m "Capitalize"
-    [master cb05b3f] Capitalize
-     1 file changed, 1 insertion(+), 1 deletion(-)
-```
+<center><img src="gitink/c7.svg"></center>
 
 ---
 
-### Backup to remote
+* Incorporate the changes from the `in-more-languages` branch
 
-* View local changes
 ```
-    $ git status
-    On branch master
-    Your branch is ahead of 'origin/master' by 1 commit.
-      (use "git push" to publish your local commits)
-
-    nothing to commit, working directory clean
+$ git merge in-more-languages 
+Updating b895711..84bfae8
+Fast-forward
+ hello.py | 1 +
+ 1 file changed, 1 insertion(+)
 ```
-
-* Backup to remote repository
-```
-    $ git push
-    Counting objects: 5, done.
-    Writing objects: 100% (3/3), 269 bytes | 0 bytes/s, done.
-    Total 3 (delta 0), reused 0 (delta 0)
-    To /home/olav/Dropbox/proj.git
-       f7efe62..cb05b3f  master -> master
-```
+<center><img src="gitink/c8.svg"></center>
 
 ---
 
-### Continue work on another computer
+* If the old branch is not needed it may be deleted
 
-* With access to the same shared file system
 ```
-    |Other> git clone ~/Dropbox/proj.git
-    Cloning into 'proj'...
-    done.
-    |Other> cd proj
+$ git branch -d in-more-languages 
+Deleted branch in-more-languages (was 84bfae8).
+
 ```
-* work on remote
-    - edit -> add -> commit -> push
+<center><img src="gitink/c9.svg"></center>
 
 ---
-
-### Back on local
-
-* Retrieve changes that was made on another system
-
-* By you or another developer
-
-```
-    $ git pull
-    remote: Counting objects: 5, done.
-    remote: Total 3 (delta 0), reused 0 (delta 0)
-    Unpacking objects: 100% (3/3), done.
-    From /home/olav/Dropbox/proj
-       cb05b3f..d5fe073  master     -> origin/master
-    Updating cb05b3f..d5fe073
-    Fast-forward
-     hello.py | 2 +-
-     1 file changed, 1 insertion(+), 1 deletion(-)
-
-```
-
----
-
-### Summary of work cycle
-
-* Start a new project
-```
-    $ git init
-```
-
-* Get a copy of existing project
-```
-    $ git clone
-```
-
-* Locally: edit-add-commit
-```
-    $ vim ...
-    $ git add...
-    $ git commit...
-```
-* Sync with remote: pull-push
-```
-    $ git pull
-    $ git push
-```
-
----
-
-### Use a remote server (service)
-
-* github.com (free for public projects)
-* gitlab.com  (free for public and private projects)
 
 ### Links
 
