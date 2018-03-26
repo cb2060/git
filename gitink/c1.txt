@@ -1,0 +1,3 @@
+ f56e3da<-[HEAD -> master]
+ |
+.git
