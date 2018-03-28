@@ -690,6 +690,12 @@ Deleted branch in-more-languages (was 84bfae8).
 ```
 <center><img src="gitink/c9.svg"></center>
 
+
+* Note: the branch concept brings to mind a certain line of development, like the
+branch of a tree. However a git branch name essentially a label for a
+particular commit. If one commit has two labels one of them can easily be
+deleted without loosing any information.
+
 ---
 
 ## Remote repositories
@@ -723,9 +729,14 @@ work directory     <- init, clone
 * See https://www.kth.se/student/kth-it-support/work-online/kth-github
 * Go to https://gits-15.sys.kth.se and log in with your KTH account
 * You need to upload ssh keys for this service
-* Having logged in create new repository in the browser
-* Locally add an alias (origin) for the new empty remote repositry
 
+---
+
+### Uploading a local repository
+
+* Having logged in create a new empty repository in the browser
+* Locally define an alias for the new remote repository:
+any name will do but *origin* is a common convention
 ```
 $ git remote add origin git@gits-15.sys.kth.se:<user>/proj
 ```
@@ -734,16 +745,31 @@ $ git remote -v
 origin git@gits-15.sys.kth.se:<user>/proj (fetch)
 origin git@gits-15.sys.kth.se:<user>/proj (push)
 ```
-
-* Let the local branch track the remote repository
-
+* push the local to the remote, and let the local branch track the remote repository
 ```
-$ git push -u origin master
+$ git push --set-upstream origin master
 ...
 To git@gits-15.sys.kth.se
  * [new branch]      master -> master
 Branch master set up to track remote branch master from origin.
+$ git branch -vv
+ * master 84bfae8 [origin/master] French
 ```
+---
+
+### Remote repository(origin)
+
+<img src="gitink/c9.svg">
+
+After the push operations the remote repository  has the same information as
+the local
+
+### Local repository
+
+<img src="gitink/c10.svg">
+
+In local repository also have knowledge about the status of the remote
+repositry in terms of an extra branch name `origin/master`
 
 ---
 
@@ -759,6 +785,28 @@ Branch master set up to track remote branch master from origin.
 ```
 * work on other computer and push back changes
     - edit -> add -> commit -> push
+
+---
+
+### Other
+
+* after commit
+
+<img src="gitink/c11.svg">
+
+* after push
+
+<img src="gitink/c12.svg">
+
+---
+
+### Local
+
+<img src="gitink/c10.svg">
+
+* after fetch
+
+<img src="gitink/c13.svg">
 
 ---
 
