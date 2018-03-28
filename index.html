@@ -692,6 +692,119 @@ Deleted branch in-more-languages (was 84bfae8).
 
 ---
 
+## Remote repositories
+
+* Necessary for collaborative projects
+* Useful for single-user projects
+* Web-services, github, bitbucket
+* A shared directory (NFS, AFS, Dropbox....)
+* git pull from remote
+* git push to remote
+
+```
+repository (.git)  <->   remote
+                pull,push
+
+    ^
+    |   commit
+
+staging area (cache)
+
+    ^
+    |   add
+
+work directory     <- init, clone
+```
+
+---
+
+## Working with KTH github
+
+* See https://www.kth.se/student/kth-it-support/work-online/kth-github
+* Go to https://gits-15.sys.kth.se and log in with your KTH account
+* You need to upload ssh keys for this service
+* Having logged in create new repository in the browser
+* Locally add an alias (origin) for the new empty remote repositry
+
+```
+$ git remote add origin git@gits-15.sys.kth.se:<user>/proj
+```
+```
+$ git remote -v
+origin git@gits-15.sys.kth.se:<user>/proj (fetch)
+origin git@gits-15.sys.kth.se:<user>/proj (push)
+```
+
+* Let the local branch track the remote repository
+
+```
+$ git push -u origin master
+...
+To git@gits-15.sys.kth.se
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+```
+
+---
+
+### Continue work on another computer
+
+* get a copy of the repository
+
+```
+    |Other> git clone git@gits-15.sys.kth.se:<user>/proj.git
+    Cloning into 'proj'...
+    done.
+    |Other> cd proj
+```
+* work on other computer and push back changes
+    - edit -> add -> commit -> push
+
+---
+
+### Back on local
+
+* Retrieve changes that was made on another system
+
+* By you or another developer
+
+```
+$ git pull
+...
+Fast-forward
+ hello.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+```
+---
+
+### Summary of work cycle
+
+* Start a new project
+```
+    $ git init
+```
+
+* Get a copy of existing project
+```
+    $ git clone
+```
+
+* Locally: edit-add-commit
+```
+    $ vim ...
+    $ git add...
+    $ git commit...
+```
+* Sync with remote: pull-push
+```
+    $ git pull
+    $ git push
+```
+
+
+---
+
 ### Links
 
 * http://git-scm.com/book
