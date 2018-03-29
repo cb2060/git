@@ -732,3 +732,7 @@ $ git push origin fix
 * https://www.linux.com/learn/fixing-mistakes-git
 * http://christoph.ruegg.name/blog/git-howto-revert-a-commit-already-pushed-to-a-remote-reposit.html
 * http://git-man-page-generator.lokaltog.net/
+
+### Acknowledgement
+
+* Figures produced with gitink software by Radovan Bast
