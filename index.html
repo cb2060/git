@@ -848,6 +848,43 @@ $ git pull # does a fetch and a merge to your local repository
     $ git push
 ```
 
+---
+## Github collaborative workflow
+Contributing to open source
+
+* In the web interface of the reference repo, fork a copy to your own account
+* Clone from your copied repository to your work space. By default your fork
+will have now have remote label 'origin'
+* It is customary to define the reference repo with the remote label "upstream"
+```
+$ git remote add upstream <url of reference repo>
+```
+* Retrieve the current information from the reference repo
+```
+$ git fetch upstream
+```
+<img src="gitink/c15.svg">
+
+---
+* Create and checkout a 'fix' branch for a particular change
+```
+$ git checkout -b fix
+```
+* Edit the file, add and commit locally
+```
+$ git add .
+$ git commit -m "This is my fix"
+```
+<img src="gitink/c16.svg">
+
+---
+* Push the fix branch to your copy repo
+```
+$ git push origin fix
+```
+<img src="gitink/c17.svg">
+
+* Now you are ready to do a pull request in the Github web interface
 
 ---
 
