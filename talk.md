@@ -623,42 +623,40 @@ repositry in terms of an extra branch name `origin/master`
 
 ---
 
-### Other
+### On other computer
 
-* after commit
+```
+|other> git commit
+```
 
 <img src="gitink/c11.svg">
 
-* after push
+```
+|other> git push
+```
 
 <img src="gitink/c12.svg">
 
 ---
 
-### Local
+### Back on local computer
+
+* Retrieve changes that was made on another system
 
 <img src="gitink/c10.svg">
 
-* after fetch
+```
+$ git fetch  # obtain new remote commits but do not change anything locally
+```
 
 <img src="gitink/c13.svg">
 
 ---
 
-### Back on local
-
-* Retrieve changes that was made on another system
-
-* By you or another developer
-
 ```
-$ git pull
-...
-Fast-forward
- hello.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
+$ git pull # does a fetch and a merge to your local repository
 ```
+<img src="gitink/c14.svg">
 ---
 
 ### Summary of work cycle

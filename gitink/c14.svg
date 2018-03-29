@@ -8,7 +8,7 @@
                  xmlns="http://www.w3.org/2000/svg"
                  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
                  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                 width="235.0"
+                 width="398.0"
                  height="270.0"
                  id="svg2"
                  version="1.1"
@@ -208,7 +208,7 @@
                  marker-end:url(#fullmarker);
                  stroke-miterlimit:4;
                  stroke-dasharray:none"
-                 d="M 171.0,-165.0 72.45,-165.0"
+                 d="M 171.0,-225.0 72.45,-225.0"
                  inkscape:connector-curvature="0" />
            
            <rect style="fill:#dddddd;
@@ -218,42 +218,6 @@
                         stroke-opacity:1.0;
                         stroke-dasharray:none"
                  width="128.0"
-                 height="30.0"
-                 x="107.0"
-                 y="-180.0"
-                 ry="0.0" />
-           <text style="font-size:12.5px;
-                        font-style:normal;
-                        font-weight:normal;
-                        line-height:125%%;
-                        letter-spacing:0px;
-                        word-spacing:0px;
-                        fill:#000000;
-                        fill-opacity:1.0;
-                        stroke:none;
-                        font-family:DejaVu Sans Mono"
-                 x="114.5"
-                 y="-159.5">HEAD -> master</text>
-           
-           <path style="fill:none;
-                 stroke:#000000;
-                 stroke-width:2.5;
-                 stroke-linecap:butt;
-                 stroke-linejoin:miter;
-                 stroke-opacity:1.0;
-                 marker-end:url(#fullmarker);
-                 stroke-miterlimit:4;
-                 stroke-dasharray:none"
-                 d="M 167.0,-225.0 72.68,-225.0"
-                 inkscape:connector-curvature="0" />
-           
-           <rect style="fill:#dddddd;
-                        stroke:#000000;
-                        stroke-width:1.25;
-                        stroke-miterlimit:4;
-                        stroke-opacity:1.0;
-                        stroke-dasharray:none"
-                 width="120.0"
                  height="30.0"
                  x="107.0"
                  y="-240.0"
@@ -269,7 +233,43 @@
                         stroke:none;
                         font-family:DejaVu Sans Mono"
                  x="114.5"
-                 y="-219.5">origin/master</text>
+                 y="-219.5">HEAD -> master</text>
+           
+           <path style="fill:none;
+                 stroke:#000000;
+                 stroke-width:2.5;
+                 stroke-linecap:butt;
+                 stroke-linejoin:miter;
+                 stroke-opacity:1.0;
+                 marker-end:url(#fullmarker);
+                 stroke-miterlimit:4;
+                 stroke-dasharray:none"
+                 d="M 334.0,-225.0 236.2,-225.0"
+                 inkscape:connector-curvature="0" />
+           
+           <rect style="fill:#dddddd;
+                        stroke:#000000;
+                        stroke-width:1.25;
+                        stroke-miterlimit:4;
+                        stroke-opacity:1.0;
+                        stroke-dasharray:none"
+                 width="128.0"
+                 height="30.0"
+                 x="270.0"
+                 y="-240.0"
+                 ry="0.0" />
+           <text style="font-size:12.5px;
+                        font-style:normal;
+                        font-weight:normal;
+                        line-height:125%%;
+                        letter-spacing:0px;
+                        word-spacing:0px;
+                        fill:#000000;
+                        fill-opacity:1.0;
+                        stroke:none;
+                        font-family:DejaVu Sans Mono"
+                 x="277.5"
+                 y="-219.5"> origin/master</text>
            
                 </g>
               </svg>
