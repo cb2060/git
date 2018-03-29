@@ -735,4 +735,5 @@ $ git push origin fix
 
 ### Acknowledgement
 
-* Figures produced with gitink software by Radovan Bast
+* Figures produced with [gitink](https://github.com/bast/gitink) software by Radovan Bast
+
