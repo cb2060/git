@@ -660,11 +660,21 @@ $ git log --oneline
 b895711 (master) Change greeting
 f56e3da First hello
 ```
+---
+
+## Work in the new branch
+
+```
+$ git log --oneline
+84bfae8 (HEAD -> in-more-languages) French
+b895711 (master) Change greeting
+f56e3da First hello
+```
 <center><img src="gitink/c6.svg"></center>
 
 ---
 
-### Keep the changes: merge to master
+## Keep the changes: merge to master
 
 ```
 $ git checkout master
@@ -673,6 +683,8 @@ Switched to branch 'master'
 <center><img src="gitink/c7.svg"></center>
 
 ---
+
+## Keep the changes: merge to master
 
 * Incorporate the changes from the `in-more-languages` branch
 
@@ -687,6 +699,8 @@ Fast-forward
 
 ---
 
+## Keep the changes: merge to master
+
 * If the old branch is not needed it may be deleted
 
 ```
@@ -695,7 +709,6 @@ Deleted branch in-more-languages (was 84bfae8).
 
 ```
 <center><img src="gitink/c9.svg"></center>
-
 
 * Note: the branch concept brings to mind a certain line of development, like the
 branch of a tree. However a git branch name essentially a label for a
@@ -708,10 +721,10 @@ deleted without loosing any information.
 
 * Necessary for collaborative projects
 * Useful for single-user projects
-* Web-services, github, bitbucket
+* Web-services, github, gitlab, bitbucket
 * A shared directory (NFS, AFS, Dropbox....)
-* git pull from remote
-* git push to remote
+* `git pull` from remote
+* `git push` to remote
 
 ```
 repository (.git)  <->   remote
@@ -738,20 +751,24 @@ work directory     <- init, clone
 
 ---
 
-### Uploading a local repository
+## Uploading a local repository
 
 * Having logged in create a new empty repository in the browser
-* Locally define an alias for the new remote repository:
-any name will do but *origin* is a common convention
+* Locally define an alias for the new remote repository: any name will do but
+  *origin* is a common convention
+
 ```
 $ git remote add origin git@gits-15.sys.kth.se:<user>/proj
 ```
+
 ```
 $ git remote -v
 origin git@gits-15.sys.kth.se:<user>/proj (fetch)
 origin git@gits-15.sys.kth.se:<user>/proj (push)
 ```
+
 * push the local to the remote, and let the local branch track the remote repository
+
 ```
 $ git push --set-upstream origin master
 ...
@@ -761,16 +778,19 @@ Branch master set up to track remote branch master from origin.
 $ git branch -vv
  * master 84bfae8 [origin/master] French
 ```
+
 ---
 
-### Remote repository(origin)
+## Remote repository (origin)
 
 <img src="gitink/c9.svg">
 
 After the push operations the remote repository  has the same information as
 the local
 
-### Local repository
+---
+
+## Local repository
 
 <img src="gitink/c10.svg">
 
@@ -779,42 +799,50 @@ repositry in terms of an extra branch name `origin/master`
 
 ---
 
-### Continue work on another computer
+## Continue work on another computer
 
 * get a copy of the repository
 
 ```
-    |Other> git clone git@gits-15.sys.kth.se:<user>/proj.git
+    $ git clone git@gits-15.sys.kth.se:<user>/proj.git
     Cloning into 'proj'...
     done.
-    |Other> cd proj
+    $ cd proj
 ```
 * work on other computer and push back changes
     - edit -> add -> commit -> push
 
 ---
 
-### On other computer
+## On another computer
 
 ```
-|other> git commit
+$ git commit
 ```
 
 <img src="gitink/c11.svg">
 
+---
+
+## On another computer
+
 ```
-|other> git push
+$ git push
 ```
 
 <img src="gitink/c12.svg">
 
 ---
 
-### Back on local computer
-
-* Retrieve changes that was made on another system
+## Back on local computer
 
 <img src="gitink/c10.svg">
+
+---
+
+## Back on local computer
+
+* Retrieve changes that was made on another system
 
 ```
 $ git fetch  # obtain new remote commits but do not change anything locally
@@ -824,77 +852,107 @@ $ git fetch  # obtain new remote commits but do not change anything locally
 
 ---
 
+## Back on local computer
+
 ```
 $ git pull # does a fetch and a merge to your local repository
 ```
 <img src="gitink/c14.svg">
+
 ---
 
-### Summary of work cycle
+## Summary of work cycle
 
 * Start a new project
+
 ```
     $ git init
 ```
 
 * Get a copy of existing project
+
 ```
     $ git clone
 ```
 
 * Locally: edit-add-commit
+
 ```
     $ vim ...
     $ git add...
     $ git commit...
 ```
+
 * Sync with remote: pull-push
+
 ```
     $ git pull
     $ git push
 ```
 
 ---
+
 ## Github collaborative workflow
+
 Contributing to open source
 
 * In the web interface of the reference repo, fork a copy to your own account
 * Clone from your copied repository to your work space. By default your fork
 will have now have remote label 'origin'
 * It is customary to define the reference repo with the remote label "upstream"
+
 ```
 $ git remote add upstream <url of reference repo>
 ```
+
+---
+
+## Github collaborative workflow
+
 * Retrieve the current information from the reference repo
+
 ```
 $ git fetch upstream
 ```
+
 <img src="gitink/c15.svg">
 
 ---
+
+## Github collaborative workflow
+
 * Create and checkout a 'fix' branch for a particular change
+
 ```
 $ git checkout -b fix
 ```
+
 * Edit the file, add and commit locally
+
 ```
 $ git add .
 $ git commit -m "This is my fix"
 ```
+
 <img src="gitink/c16.svg">
 
 ---
+
+## Github collaborative workflow
+
 * Push the fix branch to your copy repo
+
 ```
 $ git push origin fix
 ```
+
 <img src="gitink/c17.svg">
 
 * Now you are ready to do a pull request in the Github web interface
 
 ---
 
-### Github workflow scheme
+## Github workflow scheme
 
 <div class="row">
 <div class="col-md-9">
