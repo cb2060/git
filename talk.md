@@ -32,7 +32,6 @@ layout: false
 
 ---
 ## What is version control:
--
 
 * A Version Control System (VCS) is a frameorks that tracks the history of a project
 
@@ -52,11 +51,15 @@ You may already have used some manual version...
 ```
 $ cp -r Project Project.save
 ```
-... work 
+
+... some work ...
+
 ```
 $ cp -r Project Project.save.v2
 ```
-... work 
+
+... some work ...
+
 ```
 $ cp -r Project Project.save.v2.new
 ```
@@ -86,33 +89,29 @@ $ cp -r Project Project.save.v2.new
 
 ## When to use
 
-#### Why
+### Scenarios
 
 * For source code development
 * For manuscripts
 * In single-user projects
 * In collaborative projects
 
-`Practically always`
-
-#### Benefits
+### Benefits
 
 * No history is lost
 * All versions of your documents are preserved
 * Easy to backup to other sites
 
-
-
 ---
 
-# Concepts
+## Concepts
 
 * Work directory: local directory where you work
 * Cache: temporary area for files you intend to keep
 * Commit: a snapshot of the project files at a point in time
 * Repository: sequence/tree of commits (history of the project)
 
-# 11 basic commands
+### 11 basic commands
 
 <div class="col-md-6">
     <ul>
@@ -146,44 +145,50 @@ $ cp -r Project Project.save.v2.new
     </ul>
 </div>
 
-
 ---
 
-### Setup
+## Setup
 
-#### The first time around
+The first time around
+
 ```
     $ git config --global user.name "First Last"
     $ git config --global user.email "first.last@isp.com"
 ```
 
-Creates a configuration file ``~/.gitconfig``
+Creates a configuration file `~/.gitconfig`
+
 ```
     [user]
 	name = First Last
 	email = first.last@isp.com
 
 ```
-*Note*:    You can create and edit the file directly
+
+*Note*: You can create and edit the file directly
 
 ---
 
-### Initializing a repository
+## Initializing a repository
 
 * Use an existing directory or create a new project directory
+
 ```
     $ mkdir proj
 ```
+
 <pre>
 proj/
 </pre>
 
 * Go to the directory and initialize
+
 ```
     $ cd proj
     $ git init
     Initialized empty Git repository in (...)proj/.git/
 ```
+
 <pre>
 proj/
 └── .git
@@ -233,11 +238,10 @@ Initial commit
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-                                                                                        hello.py
+        hello.py
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
-
 
 ---
 
@@ -262,7 +266,6 @@ Changes to be committed:
     new file:   hello.py
 ```
 
-
 ### The staging area/cache
 * After an add operation a file is in the staging area (cache)
 * This is an intermediate level between the work directory and repository
@@ -275,14 +278,18 @@ proj
 </pre>
 
 ## Save to repository
+
 * Save the latest changes in the local repository (in `.git` directory)
+
 ```
 $ git commit -m "First hello"
 [master (root-commit) edf197e] First hello
  1 file changed, 1 insertion(+)
  create mode 100644 hello.py
 ```
+
 * Check status - all clear
+
 ```
 $ git status
 On branch master
@@ -291,9 +298,10 @@ nothing to commit, working directory clean
 
 ---
 
-### Review history
+## Review history
 
 To see the commit history of the project files
+
 ```
 $ git log --oneline
 f56e3da (HEAD -> master) First hello
@@ -310,8 +318,7 @@ f56e3da (HEAD -> master) First hello
 
 ---
 
-
-### Viewing changes
+## Viewing changes
 
 * Consider a modified file
 
@@ -328,13 +335,13 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-                                                                                        modified:   hello.py
+        modified:   hello.py
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 ---
 
-### Viewing changes
+## Viewing changes
 
 ```
 $ git diff
@@ -348,7 +355,7 @@ index ed708ec..01c97be 100644
 ```
 ---
 
-### Save changes
+## Save changes
 
 * First to cache
 
@@ -358,7 +365,6 @@ $ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
-
 
 	modified:   hello.py
 ```
@@ -372,11 +378,10 @@ $ git commit -m "Change greeting"
 ```
 ---
 
-### History after two commits
-
+## History after commits
 
 ```bash
-    $ git log --oneline
+$ git log --oneline
 b895711 (HEAD -> master) Change greeting
 f56e3da First hello
 ```
@@ -385,8 +390,8 @@ f56e3da First hello
 
 ---
 
+## Recovering old work
 
-### Recovering old work
 * To retreive old verions, use checkout with the commit string
 
 ```
@@ -409,6 +414,7 @@ HEAD is now at f56e3da... First hello
 $ cat hello.py
 print("Hello world")!
 ```
+
 ---
 
 ```
@@ -424,17 +430,18 @@ $git checkout master
 Previous HEAD position was f56e3da... First hello
 Switched to branch 'master'
 ```
+
 <img src="gitink/c4.svg">
 
 ---
 
-### The work cycle
-There are three levels, from "lowest"
+## The work cycle
+
+There are three levels:
 
 * The work directory
 * The staging area
 * The repository
-
 
 ```
 repository (c1 -> c2 -> c3...)
@@ -448,8 +455,6 @@ staging area (cache)
 
 work directory
 ```
-
-A single file represented att all levels and all previous versions
 
 ---
 
@@ -468,7 +473,8 @@ f56e3da First hello
 <img src="gitink/c5.svg">
 
 ---
-### Work in the new branch
+
+## Work in the new branch
 
 ```python
 #hello.py
