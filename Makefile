@@ -1,5 +1,6 @@
 index.html: talk.md
 	python refreeze/freeze.py
+	python fix_font.py
 
 test:
 	python -m pytest -vx --doctest-glob '*.md'
