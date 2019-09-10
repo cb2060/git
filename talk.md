@@ -3,7 +3,7 @@
 </script>
 # Introduction to git
 
-BB1000 Programming in Python
+BB2060 Applied programming for life sciences
 
 KTH
 
